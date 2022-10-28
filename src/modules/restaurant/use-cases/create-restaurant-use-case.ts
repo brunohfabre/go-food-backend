@@ -12,7 +12,7 @@ type CreateRestaurantResponse = Restaurant
 @injectable()
 export class CreateRestaurantUseCase {
   constructor(
-    @inject('InMemoryRestaurantsRepository')
+    @inject('RestaurantsRepository')
     private restaurantsRepository: RestaurantsRepository,
   ) {}
 

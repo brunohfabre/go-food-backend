@@ -8,7 +8,7 @@ type ListRestaurantsResponse = Restaurant[]
 @injectable()
 export class ListRestaurantsUseCase {
   constructor(
-    @inject('InMemoryRestaurantsRepository')
+    @inject('RestaurantsRepository')
     private restaurantsRepository: RestaurantsRepository,
   ) {}
 
