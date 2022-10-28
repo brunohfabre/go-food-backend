@@ -7,23 +7,25 @@ import { CreateRestaurantUseCase } from './create-restaurant-use-case'
 describe('Create restaurant', () => {
   it('it should be able to create new restaurant', () => {
     const inMemoryRestaurantsRepository = new InMemoryRestaurantsRepository()
-    const createRestaurant = new CreateRestaurantUseCase(
+    const createRestaurantUseCase = new CreateRestaurantUseCase(
       inMemoryRestaurantsRepository,
     )
 
-    expect(createRestaurant.execute({ name: 'Any name' })).resolves.toBeTruthy()
+    expect(
+      createRestaurantUseCase.execute({ name: 'Any name' }),
+    ).resolves.toEqual(expect.objectContaining({ name: 'Any name' }))
   })
 
   it('it should not be able to create new restaurant with same name', async () => {
     const inMemoryRestaurantsRepository = new InMemoryRestaurantsRepository()
-    const createRestaurant = new CreateRestaurantUseCase(
+    const createRestaurantUseCase = new CreateRestaurantUseCase(
       inMemoryRestaurantsRepository,
     )
 
-    await createRestaurant.execute({ name: 'Any name' })
+    await createRestaurantUseCase.execute({ name: 'Any name' })
 
     expect(
-      createRestaurant.execute({ name: 'Any name' }),
+      createRestaurantUseCase.execute({ name: 'Any name' }),
     ).rejects.toBeInstanceOf(Error)
   })
 })

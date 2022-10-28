@@ -19,6 +19,16 @@ export class InMemoryRestaurantsRepository implements RestaurantsRepository {
     return restaurant
   }
 
+  async findById(id: string): Promise<Restaurant | null> {
+    const restaurant = this.items.find((restaurant) => restaurant.id === id)
+
+    if (!restaurant) {
+      return null
+    }
+
+    return restaurant
+  }
+
   async list(): Promise<Restaurant[]> {
     const restaurants = this.items
 
@@ -31,5 +41,15 @@ export class InMemoryRestaurantsRepository implements RestaurantsRepository {
     this.items.push(restaurant)
 
     return restaurant
+  }
+
+  async update({ id, name }: Restaurant): Promise<void> {
+    this.items = this.items.map((item) =>
+      item.id === id ? { id, name } : item,
+    )
+  }
+
+  async delete(id: string): Promise<void> {
+    this.items = this.items.filter((item) => item.id !== id)
   }
 }

@@ -3,11 +3,11 @@ import { inject, injectable } from 'tsyringe'
 import { Restaurant } from '../entities/restaurant'
 import { RestaurantsRepository } from '../repositories/restaurants-repository'
 
-interface CreateRestaurantRequest {
+interface CreateRestaurantUseCaseRequest {
   name: string
 }
 
-type CreateRestaurantResponse = Restaurant
+type CreateRestaurantUseCaseResponse = Restaurant
 
 @injectable()
 export class CreateRestaurantUseCase {
@@ -18,7 +18,7 @@ export class CreateRestaurantUseCase {
 
   async execute({
     name,
-  }: CreateRestaurantRequest): Promise<CreateRestaurantResponse> {
+  }: CreateRestaurantUseCaseRequest): Promise<CreateRestaurantUseCaseResponse> {
     const restaurantExists = await this.restaurantsRepository.findByName(name)
 
     if (restaurantExists) {
