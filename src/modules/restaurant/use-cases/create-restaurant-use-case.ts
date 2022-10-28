@@ -1,3 +1,4 @@
+import { inject, injectable } from 'tsyringe'
 import { Restaurant } from '../entities/restaurant'
 import { RestaurantsRepository } from '../repositories/restaurants-repository'
 
@@ -7,8 +8,12 @@ interface CreateRestaurantRequest {
 
 type CreateRestaurantResponse = Restaurant
 
-export class CreateRestaurant {
-  constructor(private restaurantsRepository: RestaurantsRepository) {}
+@injectable()
+export class CreateRestaurantUseCase {
+  constructor(
+    @inject("InMemoryRestaurantsRepository")
+    private restaurantsRepository: RestaurantsRepository
+  ) {}
 
   async execute({
     name,
@@ -19,9 +24,7 @@ export class CreateRestaurant {
       throw new Error('Another restaurant exists with same name.')
     }
 
-    const restaurant = new Restaurant({ name })
-
-    await this.restaurantsRepository.create(restaurant)
+    const restaurant = await this.restaurantsRepository.create({ name })
 
     return restaurant
   }

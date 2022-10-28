@@ -2,8 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { Restaurant } from '../entities/restaurant'
 import { InMemoryRestaurantsRepository } from '../repositories/implementations/in-memory-restaurants-repository'
-
-import { CreateRestaurant } from './create-restaurant'
+import { CreateRestaurantUseCase } from './create-restaurant-use-case'
 
 describe('Create restaurant', () => {
   it('it should be able to create new restaurant', () => {

@@ -1,6 +1,11 @@
-import { Restaurant } from "../entities/restaurant";
+import { Restaurant } from '../entities/restaurant'
+
+export interface CreateRestaurantDTO {
+  name: string
+}
 
 export interface RestaurantsRepository {
-  create(restaurant: Restaurant): Promise<void>
   findByName(name: string): Promise<Restaurant | null>
+  list(): Promise<Restaurant[]>
+  create(restaurant: CreateRestaurantDTO): Promise<Restaurant>
 }
