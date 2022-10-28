@@ -1,7 +1,10 @@
 import { randomUUID } from 'node:crypto'
 
 import { Restaurant } from '../../entities/restaurant'
-import { CreateRestaurantDTO, RestaurantsRepository } from '../restaurants-repository'
+import {
+  CreateRestaurantDTO,
+  RestaurantsRepository,
+} from '../restaurants-repository'
 
 export class InMemoryRestaurantsRepository implements RestaurantsRepository {
   public items: Restaurant[] = []

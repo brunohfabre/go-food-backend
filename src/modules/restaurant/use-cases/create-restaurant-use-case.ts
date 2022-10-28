@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe'
+
 import { Restaurant } from '../entities/restaurant'
 import { RestaurantsRepository } from '../repositories/restaurants-repository'
 
@@ -11,8 +12,8 @@ type CreateRestaurantResponse = Restaurant
 @injectable()
 export class CreateRestaurantUseCase {
   constructor(
-    @inject("InMemoryRestaurantsRepository")
-    private restaurantsRepository: RestaurantsRepository
+    @inject('InMemoryRestaurantsRepository')
+    private restaurantsRepository: RestaurantsRepository,
   ) {}
 
   async execute({

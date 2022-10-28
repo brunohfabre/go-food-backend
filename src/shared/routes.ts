@@ -1,4 +1,5 @@
 import { Router } from 'express'
+
 import { restaurantsRouter } from '../modules/restaurant/routes/restaurants.routes'
 
 const routes = Router()
